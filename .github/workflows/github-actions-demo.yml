@@ -16,4 +16,5 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
+      - run: echo "link to this specific action is https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      - run: echo "link to this specific action (in plain shell) is https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
