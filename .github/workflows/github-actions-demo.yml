@@ -18,13 +18,18 @@ jobs:
           ls
 
       - name: run test script
-        id: test-id
         run: ./${{ github.repository }}/.github/workflows/testScript.sh
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-      - name: use custom variable
-        run: echo "using ${{ steps.test-id.outputs.custom_var }} in action name"
-        run: echo "using ${{ steps.test-id.outputs.frac }} in action name"
+      - name: set run name
+        run: |
+          MY_RUN_NAME="testName"
+          echo "::set-env name=MY_RUN_NAME::$MY_RUN_NAME"
+
+      - name: use custom variables
+        run: |
+          echo "using $var in action name"
+          echo "using $frac in action name"
 
       - run: echo "link to this specific action is https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       - run: echo "link to this specific action (in plain shell) is https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
